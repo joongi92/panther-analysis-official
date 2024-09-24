@@ -1,0 +1,26 @@
+AnalysisType: scheduled_query
+Description: Query to search for new logins
+Enabled: false
+Query: |
+  with previous_logins as (
+      select distinct ipAddress, actor:email as email
+      from panther_logs.public.gsuite_activityevent
+      where p_occurs_since(12w)
+      and not p_occurs_since(12h)
+      and type = 'login'
+      and name = 'login_success'
+  ), recent_logins as (
+      select * from panther_logs.public.gsuite_activityevent
+      where p_occurs_since(12h)
+      and type = 'login'
+      and name = 'login_success'
+  )
+  select t1.*, t1.ipAddress as m_ip_addreess, t1.actor:email as m_username from recent_logins as t1 left join previous_logins as t2
+  on t1.ipAddress = t2.ipAddress
+  and t1.actor:email = email
+  where t2.ipAddress is null
+QueryName: "Google Workspace Login From New IP"
+Schedule:
+  RateMinutes: 720 # 12 hours
+  TimeoutMinutes: 2
+

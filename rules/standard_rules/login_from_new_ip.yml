@@ -1,0 +1,39 @@
+AnalysisType: scheduled_rule
+Filename: login_from_new_ip.py
+RuleID: "Standard.LoginFromNewIP"
+DisplayName: "Login from New IP"
+Enabled: true
+ScheduledQueries:
+  - Google Workspace Login From New IP
+Severity: Info
+CreateAlert: false
+Reports:
+  MITRE ATT&CK:
+    - TA0001:T1078
+Description: A user has signed into a service from a new IP address
+Runbook: >
+  No immediate action required, but can be useful for context during an investigation.
+SummaryAttributes:
+  - p_any_usernames
+  - p_any_ip_addresses
+  - p_any_domain_names
+Tags:
+  - Identity & Access Management
+  - Initial Access:Valid Accounts
+Tests: # We don't need to make a test for every log type - we're normalizing some fields in the query itself
+  - Name: V4 Login Event
+    ExpectedResult: true
+    Log:
+      {
+        "m_ip_address": "1.1.1.1",
+        "m_username": "homer.simpson",
+        "p_log_type": "Sample.LogType"
+      }
+  - Name: V6 Login Event
+    ExpectedResult: false
+    Log:
+      {
+        "m_ip_address": "1:1:1:1:1:1:1:1",
+        "m_username": "homer.simpson",
+        "p_log_type": "Sample.LogType"
+      }
