@@ -95,7 +95,7 @@
   ],
   "definitions": {
     "AlertContext": {
-      "$comment": "",
+      "$comment": "https://docs.panther.com/detections/rules/writing-simple-detections#alertcontext",
       "description": "Event values to add to the Event under custom keys to create dynamic alert context",
       "type": "array",
       "items": {
@@ -177,13 +177,13 @@
       "default": "this_file.py"
     },
     "RuleID": {
-      "$comment": "https://docs.panther.com/detections/writing-and-editing-detections",
+      "$comment": "https://docs.panther.com/detections/rules/python#python-rule-specification-reference",
       "description": "A unique string to identify this rule",
       "default": "LogType.DetectionClassification.Specific",
       "type": "string"
     },
     "Description": {
-      "$comment": "https://docs.panther.com/detections/writing-and-editing-detections/rules",
+      "$comment": "https://docs.panther.com/detections/rules/python#python-rule-specification-reference",
       "description": "Description is a short sentence that describes what the detection detects.",
       "type": "string"
     },
@@ -196,22 +196,22 @@
       }
     },
     "Detection": {
-      "$comment": "https://docs.panther.com/detections/rules/yaml",
+      "$comment": "https://docs.panther.com/detections/rules/writing-simple-detections#detection",
       "description": "Panther Simple Detection rule in YAML format",
       "type": "array"
     },
     "DedupPeriodMinutes": {
-      "$comment": "https://docs.panther.com/detections/writing-and-editing-detections/rules",
+      "$comment": "https://docs.panther.com/detections/rules/python#python-rule-specification-reference",
       "description": "A number of minutes to supress additional alerts, based on the output of the dedup function",
       "type": "integer"
     },
     "Reference": {
-      "$comment": "https://docs.panther.com/detections/writing-and-editing-detections/rules",
+      "$comment": "https://docs.panther.com/detections/rules/python#python-rule-specification-reference",
       "description": "Reference material for alert. This might be a description or a link",
       "type": "string"
     },
     "Reports": {
-      "$comment": "https://docs.panther.com/detections/writing-and-editing-detections/rules",
+      "$comment": "https://docs.panther.com/detections/rules/python#python-rule-specification-reference",
       "description": "Reports describe which Benchmarks might apply to the detection, like CIS or ATT&CK",
       "type": "object"
     },
@@ -256,7 +256,7 @@
       "minItems": 1
     },
     "Runbook": {
-      "$comment": "https://docs.panther.com/detections/writing-and-editing-detections",
+      "$comment": "https://docs.panther.com/detections/rules/python#python-rule-specification-reference",
       "description": "Runbook instructions go here",
       "default": "What should people do when this alert fires?",
       "type": "string",
@@ -374,7 +374,7 @@
       ]
     },
     "Tests": {
-      "$comment": "https://docs.panther.com/detections/writing-and-editing-detections",
+      "$comment": "https://docs.panther.com/detections/testing#how-to-create-a-test-in-the-cli-workflow",
       "description": "Unit test cases",
       "type": "array",
       "items": { "$ref": "#/definitions/UnitTestCase" }
